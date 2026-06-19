@@ -44,7 +44,7 @@ body {
   display: block;
   font-size: 14px;
   font-weight: 500;
-  color: #334155;
+  color: #0f172a;
   margin-bottom: 4px;
 }
 
@@ -71,8 +71,13 @@ body {
   border: 1px solid #d1d9e6;
   border-radius: 8px;
   font-size: 15px;
-  background: #fafcff;
+  background: #ffffff;
+  color: #0f172a;
   transition: border 0.2s, box-shadow 0.2s;
+}
+
+.form-container input::placeholder {
+  color: #94a3b8;
 }
 
 .form-container input:focus {
@@ -84,7 +89,7 @@ body {
 
 .form-container .hint {
   font-size: 13px;
-  color: #94a3b8;
+  color: #64748b;
   margin-top: 4px;
 }
 
@@ -123,7 +128,12 @@ body {
   border-radius: 10px;
   font-size: 15px;
   background: #ffffff;
+  color: #0f172a;
   transition: border 0.2s, box-shadow 0.2s;
+}
+
+.search-container input::placeholder {
+  color: #94a3b8;
 }
 
 .search-container input:focus {
@@ -149,6 +159,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   font-size: 15px;
+  color: #0f172a;
 }
 
 thead {
@@ -169,6 +180,7 @@ th {
 td {
   padding: 14px 18px;
   border-bottom: 1px solid #f1f5f9;
+  color: #0f172a;
 }
 
 tbody tr:last-child td {
@@ -201,7 +213,7 @@ tbody tr:hover {
 
 .btn-edit {
   background: #f1f5f9;
-  color: #1e293b;
+  color: #0f172a;
 }
 
 .btn-edit:hover {
@@ -244,6 +256,7 @@ td input[type="number"] {
   font-size: 14px;
   width: 100%;
   background: #ffffff;
+  color: #0f172a;
   transition: border 0.2s, box-shadow 0.2s;
 }
 
@@ -286,7 +299,7 @@ td input[type="number"] {
   font-size: 14px;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
-  color: #1e293b;
+  color: #0f172a;
 }
 
 .pagination button:hover:not(:disabled) {
