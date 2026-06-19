@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
 
 interface Producto {
@@ -31,7 +33,7 @@ function App() {
       setProductos(respuesta.data)
     } catch (error) {
       console.error('Error al cargar productos:', error)
-      alert('Error al cargar productos')
+      toast.error('Error al cargar productos')
     } finally {
       setCargando(false)
     }
@@ -40,7 +42,7 @@ function App() {
   const agregarProducto = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!nuevoNombre.trim() || !nuevoPrecio.trim()) {
-      alert('Completa todos los campos')
+      toast.error('Nombre y precio son obligatorios')
       return
     }
 
@@ -52,10 +54,10 @@ function App() {
       setNuevoNombre('')
       setNuevoPrecio('')
       await cargarProductos()
-      alert('Producto agregado')
+      toast.success('Producto agregado correctamente')
     } catch (error) {
       console.error('Error al agregar:', error)
-      alert('Error al agregar producto')
+      toast.error('Error al agregar producto')
     }
   }
 
@@ -64,10 +66,10 @@ function App() {
     try {
       await axios.delete(`${API_URL}/${id}`)
       await cargarProductos()
-      alert('Producto eliminado')
+      toast.success('Producto eliminado correctamente')
     } catch (error) {
       console.error('Error al eliminar:', error)
-      alert('Error al eliminar producto')
+      toast.error('Error al eliminar producto')
     }
   }
 
@@ -79,7 +81,7 @@ function App() {
 
   const guardarEdicion = async (id: number) => {
     if (!editNombre.trim() || !editPrecio.trim()) {
-      alert('Completa todos los campos')
+      toast.error('Nombre y precio son obligatorios')
       return
     }
 
@@ -90,10 +92,10 @@ function App() {
       })
       setEditandoId(null)
       await cargarProductos()
-      alert('Producto actualizado')
+      toast.success('Producto actualizado correctamente')
     } catch (error) {
       console.error('Error al actualizar:', error)
-      alert('Error al actualizar producto')
+      toast.error('Error al actualizar producto')
     }
   }
 
