@@ -121,137 +121,140 @@ function App() {
   }, [busqueda])
 
   return (
-  <>
-    <header className="navbar">
-      <div className="navbar-logo">Gestión de productos</div>
+    <>
+      <header className="navbar">
+        <div className="navbar-logo">Gestión de productos</div>
+        <nav className="navbar-menu">
+          <a href="#">Acerca de</a>
+        </nav>
+      </header>
 
-      <nav className="navbar-menu">
-        <a href="#">Acerca de</a>
-      </nav>
-    </header>
+      <div className="app-container">
+        <h1 className="app-title">Gestión de Productos</h1>
 
-    <div className="app-container">
-      <h1 className="app-title">
-        Gestión de Productos
-      </h1>
-
-      <form className="form-container" onSubmit={agregarProducto}>
-        <input
-          type="text"
-          placeholder="Nombre del producto"
-          value={nuevoNombre}
-          onChange={(e) => setNuevoNombre(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Precio"
-          value={nuevoPrecio}
-          onChange={(e) => setNuevoPrecio(e.target.value)}
-          step="0.01"
-        />
-        <button type="submit" className="btn-add">
-          Agregar
-        </button>
-      </form>
-
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Buscar productos..."
-          value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
-        />
-      </div>
-
-      <div className="table-container">
-        <div className="table-responsive">
-          {cargando ? (
-            <div className="empty-message">Cargando productos...</div>
-          ) : productosFiltrados.length === 0 ? (
-            <div className="empty-message">No hay productos</div>
-          ) : (
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Producto</th>
-                  <th>Precio</th>
-                  <th style={{ textAlign: 'center' }}>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {productosPaginados.map((producto) => (
-                  <tr key={producto.id}>
-                    <td>{producto.id}</td>
-                    <td>
-                      {editandoId === producto.id ? (
-                        <input
-                          type="text"
-                          value={editNombre}
-                          onChange={(e) => setEditNombre(e.target.value)}
-                        />
-                      ) : (
-                        producto.nombre
-                      )}
-                    </td>
-                    <td>
-                      {editandoId === producto.id ? (
-                        <input
-                          type="number"
-                          value={editPrecio}
-                          onChange={(e) => setEditPrecio(e.target.value)}
-                          step="0.01"
-                        />
-                      ) : (
-                        `$${producto.precio.toFixed(2)}`
-                      )}
-                    </td>
-                    <td>
-                      <div className="actions">
-                        {editandoId === producto.id ? (
-                          <>
-                            <button className="btn-save" onClick={() => guardarEdicion(producto.id)}>
-                              Guardar
-                            </button>
-                            <button className="btn-cancel" onClick={cancelarEdicion}>
-                              Cancelar
-                            </button>
-                          </>
-                        ) : (
-                          <>
-                            <button className="btn-edit" onClick={() => iniciarEdicion(producto)}>
-                              Editar
-                            </button>
-                            <button className="btn-delete" onClick={() => eliminarProducto(producto.id)}>
-                              Eliminar
-                            </button>
-                          </>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-
-        {totalPaginas > 1 && (
-          <div className="pagination">
-            <button onClick={() => setPaginaActual(paginaActual - 1)} disabled={paginaActual === 1}>
-              ◀ Anterior
-            </button>
-            <span className="page-info">
-              Página {paginaActual} de {totalPaginas}
-            </span>
-            <button onClick={() => setPaginaActual(paginaActual + 1)} disabled={paginaActual === totalPaginas}>
-              Siguiente ▶
+        <form className="form-container" onSubmit={agregarProducto}>
+          <div className="form-row">
+            <div className="field-group">
+              <label>Nombre</label>
+              <input
+                type="text"
+                placeholder="Ej: Laptop, Mouse, Teclado..."
+                value={nuevoNombre}
+                onChange={(e) => setNuevoNombre(e.target.value)}
+              />
+            </div>
+            <div className="field-group field-group--small">
+              <label>Precio (MXN)</label>
+              <input
+                type="number"
+                placeholder="0.00"
+                value={nuevoPrecio}
+                onChange={(e) => setNuevoPrecio(e.target.value)}
+                step="0.01"
+              />
+            </div>
+            <button type="submit" className="btn-add">
+              Agregar producto
             </button>
           </div>
-        )}
+        </form>
+
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Buscar producto por nombre..."
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+          />
+        </div>
+
+        <div className="table-container">
+          <div className="table-responsive">
+            {cargando ? (
+              <div className="empty-message">Cargando productos...</div>
+            ) : productosFiltrados.length === 0 ? (
+              <div className="empty-message">No hay productos</div>
+            ) : (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th style={{ textAlign: 'center' }}>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {productosPaginados.map((producto) => (
+                    <tr key={producto.id}>
+                      <td>
+                        {editandoId === producto.id ? (
+                          <input
+                            type="text"
+                            value={editNombre}
+                            onChange={(e) => setEditNombre(e.target.value)}
+                          />
+                        ) : (
+                          producto.nombre
+                        )}
+                      </td>
+                      <td>
+                        {editandoId === producto.id ? (
+                          <input
+                            type="number"
+                            value={editPrecio}
+                            onChange={(e) => setEditPrecio(e.target.value)}
+                            step="0.01"
+                          />
+                        ) : (
+                          `$${producto.precio.toFixed(2)}`
+                        )}
+                      </td>
+                      <td>
+                        <div className="actions">
+                          {editandoId === producto.id ? (
+                            <>
+                              <button className="btn-save" onClick={() => guardarEdicion(producto.id)}>
+                                Guardar
+                              </button>
+                              <button className="btn-cancel" onClick={cancelarEdicion}>
+                                Cancelar
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              <button className="btn-edit" onClick={() => iniciarEdicion(producto)}>
+                                Editar
+                              </button>
+                              <button className="btn-delete" onClick={() => eliminarProducto(producto.id)}>
+                                Eliminar
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+
+          {totalPaginas > 1 && (
+            <div className="pagination">
+              <button onClick={() => setPaginaActual(paginaActual - 1)} disabled={paginaActual === 1}>
+                ◀ Anterior
+              </button>
+              <span className="page-info">
+                Página {paginaActual} de {totalPaginas}
+              </span>
+              <button onClick={() => setPaginaActual(paginaActual + 1)} disabled={paginaActual === totalPaginas}>
+                Siguiente ▶
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-     </>
+    </>
   )
 }
 

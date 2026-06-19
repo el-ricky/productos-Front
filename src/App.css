@@ -417,3 +417,21 @@ table {
 th, td {
   white-space: nowrap;
 }
+
+/* ===== BOTONES MEJOR ALINEADOS ===== */
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.actions .btn-edit,
+.actions .btn-delete,
+.actions .btn-save,
+.actions .btn-cancel {
+  min-width: 72px;
+  text-align: center;
+  padding: 6px 14px;
+}
