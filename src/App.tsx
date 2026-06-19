@@ -121,9 +121,18 @@ function App() {
   }, [busqueda])
 
   return (
+  <>
+    <header className="navbar">
+      <div className="navbar-logo">Gestión de productos</div>
+
+      <nav className="navbar-menu">
+        <a href="#">Acerca de</a>
+      </nav>
+    </header>
+
     <div className="app-container">
       <h1 className="app-title">
-        <span>Gestión de Productos</span>
+        Gestión de Productos
       </h1>
 
       <form className="form-container" onSubmit={agregarProducto}>
@@ -242,6 +251,7 @@ function App() {
         )}
       </div>
     </div>
+     </>
   )
 }
 
