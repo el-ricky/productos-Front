@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Navbar from './components/Navbar'
 import './App.css'
 
 interface Producto {
@@ -124,13 +125,7 @@ function App() {
 
   return (
     <>
-      <header className="navbar">
-        <div className="navbar-logo">Gestión de productos</div>
-        <nav className="navbar-menu">
-          <a href="#">Acerca de</a>
-        </nav>
-      </header>
-
+      <Navbar />
       <div className="app-container">
         <h1 className="app-title">Gestión de Productos</h1>
 
