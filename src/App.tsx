@@ -52,7 +52,7 @@ function App() {
       setNuevoNombre('')
       setNuevoPrecio('')
       await cargarProductos()
-      alert('Producto agregado ✅')
+      alert('Producto agregado')
     } catch (error) {
       console.error('Error al agregar:', error)
       alert('Error al agregar producto')
@@ -64,7 +64,7 @@ function App() {
     try {
       await axios.delete(`${API_URL}/${id}`)
       await cargarProductos()
-      alert('Producto eliminado ✅')
+      alert('Producto eliminado')
     } catch (error) {
       console.error('Error al eliminar:', error)
       alert('Error al eliminar producto')
@@ -90,7 +90,7 @@ function App() {
       })
       setEditandoId(null)
       await cargarProductos()
-      alert('Producto actualizado ✅')
+      alert('Producto actualizado')
     } catch (error) {
       console.error('Error al actualizar:', error)
       alert('Error al actualizar producto')
@@ -123,7 +123,7 @@ function App() {
   return (
     <div className="app-container">
       <h1 className="app-title">
-        📦 <span>Gestión de Productos</span>
+        <span>Gestión de Productos</span>
       </h1>
 
       <form className="form-container" onSubmit={agregarProducto}>
@@ -202,19 +202,19 @@ function App() {
                         {editandoId === producto.id ? (
                           <>
                             <button className="btn-save" onClick={() => guardarEdicion(producto.id)}>
-                              💾 Guardar
+                              Guardar
                             </button>
                             <button className="btn-cancel" onClick={cancelarEdicion}>
-                              ❌ Cancelar
+                              Cancelar
                             </button>
                           </>
                         ) : (
                           <>
                             <button className="btn-edit" onClick={() => iniciarEdicion(producto)}>
-                              ✏️ Editar
+                              Editar
                             </button>
                             <button className="btn-delete" onClick={() => eliminarProducto(producto.id)}>
-                              🗑️ Eliminar
+                              Eliminar
                             </button>
                           </>
                         )}
